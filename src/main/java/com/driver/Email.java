@@ -25,7 +25,7 @@ public class Email {
     //function to check whether the newpassword satisfies the conditions
     public boolean checkpassword(String newpassword){
         //Checking based on ascii value
-        if(newpassword.length() >= 8){
+        if(newpassword.length() < 8){
             return false;
         }
         int uppercase = 0;
