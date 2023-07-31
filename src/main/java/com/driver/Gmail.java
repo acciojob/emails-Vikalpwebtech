@@ -57,11 +57,16 @@ public class Gmail extends Email {
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
         //Iterating over ArrayList
+        int index = -1;
         for (int i = 0;i < inbox.size();i++){
-            if (inbox.get(i).getMessage().contains(message)){
-                inbox.remove(i);
-                return;
+            if (inbox.get(i).getMessage().equals(message)){
+                index = i;
+                break;
             }
+        }
+        if(index != -1){
+            trash.add(inbox.get(index));
+            inbox.remove(index);
         }
     }
 
@@ -84,7 +89,7 @@ public class Gmail extends Email {
         //It is guaranteed that start date <= end date
         int count = 0;
         for (Mail mail:inbox){
-            if (mail.getDate().after(start) && mail.getDate().before(end)) count++;
+            if (mail.getDate().compareTo(start) >= 0 && mail.getDate().compareTo(end) <= 0) count++;
         }
         return count;
     }
