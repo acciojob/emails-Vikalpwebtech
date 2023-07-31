@@ -38,7 +38,6 @@ public class Gmail extends Email {
         inbox = new ArrayList<>();
         trash = new ArrayList<>();
     }
-    //Using Queue
 
     public void receiveMail(Date date, String sender, String message){
         // If the inbox is full, move the oldest mail in the inbox to trash and add the new mail to inbox.
@@ -59,7 +58,7 @@ public class Gmail extends Email {
         //Iterating over ArrayList
         int index = -1;
         for (int i = 0;i < inbox.size();i++){
-            if (inbox.get(i).getMessage().equals(message)){
+            if (message.equals(inbox.get(i).getMessage())){
                 index = i;
                 break;
             }
@@ -88,8 +87,8 @@ public class Gmail extends Email {
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
         int count = 0;
-        for (Mail mail:inbox){
-            if (mail.getDate().compareTo(start) >= 0 && mail.getDate().compareTo(end) <= 0) count++;
+        for (int i =0;i< inbox.size();i++){
+            if ((inbox.get(i).getDate().compareTo(start) >= 0) && (inbox.get(i).getDate().compareTo(end) <= 0)) count++;
         }
         return count;
     }
@@ -106,7 +105,7 @@ public class Gmail extends Email {
 
     public void emptyTrash(){
         // clear all mails in the trash
-        inbox.clear();
+        trash.clear();
     }
 
     public int getInboxCapacity() {
